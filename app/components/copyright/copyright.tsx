@@ -3,13 +3,14 @@ import { StyleProp, TextStyle, View, ViewStyle,Dimensions } from "react-native"
 import { color, typography } from "../../theme"
 import { Text } from "../text/text"
 
-const {width,height} = Dimensions.get('screen'); 
+const {width,height} = Dimensions.get('window'); 
 
 const CONTAINER: ViewStyle = {
+  flex:1,
   justifyContent: "center",
   alignItems:'center',
   position:'absolute',
-  top:height-130,
+  top:height/1.2,
   left:width/8
 }
 
@@ -27,13 +28,13 @@ export interface CopyrightProps {
 }
 
 /**
- * Describe your component here
+ * CopyRight Component
  */
 export const Copyright = React.memo(()=> {
   return (
     <View style={CONTAINER}>
       <Text style={TEXT}>Copyright&copy;2022 Tahaluf Al Emarat Technical Solutions</Text>
-      <Text style={TEXT}>All rights reserved</Text>
+      <Text style={TEXT}>All rights reserved.</Text>
     </View>
   )
 })

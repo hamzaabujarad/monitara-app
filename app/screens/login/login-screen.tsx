@@ -5,18 +5,12 @@ import { Copyright, Logo, Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { color } from "../../theme"
-import {
-  Box,
-  Button,
-  Input,
-  Stack,
-} from "native-base"
+import { Box, Button, Input, Stack } from "native-base"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { translate } from "../../i18n/translate"
 import { Formik } from "formik"
 import { LoginSchema } from "../../utils/validations"
 import { showToast } from "../../utils/general-utils"
-
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
@@ -42,17 +36,13 @@ export const LoginScreen = observer(function LoginScreen() {
   const { authenticationStore } = useStores()
 
   const [securePasswordText, setSecurePasswordText] = React.useState(true)
-  const [email, setEmail] = React.useState("")
-  const [password, setPassword] = React.useState("")
-  const [loading, setLoading] = React.useState(false);
-
-
+  const [email, setEmail] = React.useState("q.hammouri@tahaluf.ae")
+  const [password, setPassword] = React.useState("M0n!t@r@P@$$w0r6")
+  const [loading, setLoading] = React.useState(false)
 
   //refs
   const emailInputRef: any = React.createRef()
   const passwordInputRef: any = React.createRef()
-
-  // <Button onPress={()=>authenticationStore.login("q.hammouri@tahaluf.ae","M0n!t@r@P@$$w0r6")}/>
   // Pull in navigation via hook
   // const navigation = useNavigation()
 
@@ -61,19 +51,16 @@ export const LoginScreen = observer(function LoginScreen() {
   }
 
   const onLoginButtonPressed = () => {
-    try {
-      setLoading(true)
-      authenticationStore
-        .login(email, password)
-        .then(() => {
-          setLoading(false)
-        })
-        .catch((error) => {
-          throw new Error(error.message)
-        })
-    } catch (error) {
-      showToast(error,'error',1000)
-    }
+    setLoading(true)
+    authenticationStore
+      .login(email, password)
+      .then(() => {
+        setLoading(false)
+      })
+      .catch((error) => {
+        setLoading(false)
+        showToast(error.message, "error", 4000)
+      })
   }
 
   const renderLogoText = () => {
