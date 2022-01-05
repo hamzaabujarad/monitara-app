@@ -4,6 +4,13 @@
     "cancel": "Cancel",
     "back": "Back"
   },
+  "loginScreen":{
+    "emailPlaceHolder":"Email",
+    "passwordPlaceHolder":"Password",
+    "emailInputError":"Invalid Email Pattern",
+    "login":"Login",
+    "logging":"Logging"
+  },
   "errors": {
     "invalidEmail": "Invalid email address."
   },

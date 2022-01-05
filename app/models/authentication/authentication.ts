@@ -9,21 +9,17 @@ export const AuthenticationModel = types
   .extend(withEnvironment)
   .props({
     identifier: types.optional(types.string, ""),
-    token:types.optional(types.string, "")
+    token: types.optional(types.string, ""),
   })
-  .views((self) => ({
-  })) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({
-    login: flow(function* (identifier:string,secret:string) {
-      const {login,kind} = yield self.environment.api.login(identifier,secret);
-      if (kind === "ok"&&!login.errorMessages.length) {
+    login: flow(function* (identifier: string, secret: string) {
+      const { login, kind } = yield self.environment.api.login(identifier, secret)
+      if (kind === "ok" && !login.errorMessages.length) {
         console.log("yesss")
-  
       } else {
-        console.log("nooo")
-    
+        throw new Error(login.errorMessages)
       }
-
     }),
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 

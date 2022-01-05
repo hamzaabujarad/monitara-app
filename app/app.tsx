@@ -21,7 +21,7 @@ import { ToggleStorybook } from "../storybook/toggle-storybook"
 import { ErrorBoundary } from "./screens/error/error-boundary"
 import { NativeBaseProvider, StatusBar } from "native-base"
 import RNBootSplash from "react-native-bootsplash";
-
+import Toast from 'react-native-toast-message';
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
@@ -69,6 +69,7 @@ function App() {
               onStateChange={onNavigationStateChange}
             />
             <StatusBar hidden={true}/>
+            <Toast />
           </ErrorBoundary>
         </SafeAreaProvider>
       </RootStoreProvider>
