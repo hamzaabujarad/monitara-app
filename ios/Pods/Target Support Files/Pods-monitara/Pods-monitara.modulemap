@@ -1,6 +1,0 @@
-module Pods_monitara {
-  umbrella header "Pods-monitara-umbrella.h"
-
-  export *
-  module * { export * }
-}
