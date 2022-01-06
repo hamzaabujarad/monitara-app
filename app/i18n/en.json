@@ -9,7 +9,8 @@
     "passwordPlaceHolder":"Password",
     "emailInputError":"Invalid Email Pattern",
     "login":"Login",
-    "logging":"Logging"
+    "logging":"Logging",
+    "changeEnvironment":"Change Environment"
   },
   "errors": {
     "invalidEmail": "Invalid email address."

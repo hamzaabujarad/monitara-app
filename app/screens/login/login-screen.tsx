@@ -1,7 +1,7 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
 import { TextStyle, ViewStyle } from "react-native"
-import { Copyright, Logo, Screen, Text } from "../../components"
+import { Copyright, Environments, Logo, Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { color } from "../../theme"
@@ -37,6 +37,7 @@ export const LoginScreen = observer(function LoginScreen() {
   //refs
   const emailInputRef: any = React.createRef()
   const passwordInputRef: any = React.createRef()
+  const actionSheetRef: any = React.createRef()
   // Pull in navigation via hook
   // const navigation = useNavigation()
 
@@ -131,6 +132,13 @@ export const LoginScreen = observer(function LoginScreen() {
       </Button>
     )
   }
+  const renderEnverninetButton = () => {
+    return (
+      <Button onPress={() => actionSheetRef.current?.setModalVisible()} size="sm" variant="ghost">
+        {translate("loginScreen.changeEnvironment")}
+      </Button>
+    )
+  }
 
   const renderLoginControls = () => {
     return (
@@ -148,6 +156,7 @@ export const LoginScreen = observer(function LoginScreen() {
                 {renderEmailInput()}
                 {renderPasswordInput()}
                 {renderLoginButton(setFieldValue)}
+                {renderEnverninetButton()}
               </Stack>
             )
           }
@@ -160,6 +169,10 @@ export const LoginScreen = observer(function LoginScreen() {
     return <Copyright />
   }
 
+  const environmentActionSheet = () => {
+    return <Environments actionSheetRef={actionSheetRef} />
+  }
+
   return (
     <Screen style={ROOT} preset="fixed">
       <Box justifyContent={"center"} alignItems={"center"} marginTop={"10%"}>
@@ -168,6 +181,7 @@ export const LoginScreen = observer(function LoginScreen() {
         {renderLoginControls()}
       </Box>
       {renderCopyRightLabel()}
+      {environmentActionSheet()}
     </Screen>
   )
 })
