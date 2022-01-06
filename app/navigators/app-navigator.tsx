@@ -9,7 +9,7 @@ import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
-import { LoginScreen } from "../screens"
+import { HomeScreen, LoginScreen, SplashScreen } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -25,39 +25,62 @@ import { LoginScreen } from "../screens"
  */
 export type NavigatorParamList = {
   login: undefined
+  splash: undefined
+  home: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<NavigatorParamList>()
 
-const AppStack = () => {
+import { createDrawerNavigator } from "@react-navigation/drawer"
+import { observer } from "mobx-react-lite"
+import { useStores } from "../models"
+
+const Drawer = createDrawerNavigator()
+
+const AppStack = observer(() => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="login"
+      initialRouteName="splash"
     >
+      <Stack.Screen name="splash" component={SplashScreen} />
       <Stack.Screen name="login" component={LoginScreen} />
     </Stack.Navigator>
+  )
+})
+const AppDrawer = () => {
+  return (
+    <Drawer.Navigator
+
+      initialRouteName="Home"
+    >
+      <Drawer.Screen name="home" component={HomeScreen} />
+    </Drawer.Navigator>
   )
 }
 
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
-export const AppNavigator = (props: NavigationProps) => {
+export const AppNavigator = observer((props: NavigationProps) => {
   const colorScheme = useColorScheme()
   useBackButtonHandler(canExit)
+  // Pull in one of our MST stores
+  const {
+    authenticationStore: { isSignedIn },
+  } = useStores();
   return (
     <NavigationContainer
       ref={navigationRef}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       {...props}
     >
-      <AppStack />
+      {isSignedIn ? <AppDrawer /> : <AppStack />}
     </NavigationContainer>
   )
-}
+})
 
 AppNavigator.displayName = "AppNavigator"
 

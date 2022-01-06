@@ -1,17 +1,14 @@
 import * as React from "react"
-import { StyleProp, TextStyle, View, ViewStyle,Dimensions } from "react-native"
+import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import { color, typography } from "../../theme"
 import { Text } from "../text/text"
-
-const {width,height} = Dimensions.get('window'); 
-
 const CONTAINER: ViewStyle = {
-  flex:1,
   justifyContent: "center",
   alignItems:'center',
   position:'absolute',
-  top:height/1.2,
-  left:width/8
+  bottom:20,
+  left:'0%',
+  right:0
 }
 
 const TEXT: TextStyle = {

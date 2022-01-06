@@ -43,8 +43,8 @@ function App() {
   useEffect(() => {
     ;(async () => {
       await initFonts() // expo
-      setupRootStore().then(setRootStore).finally(async()=>{
-        await RNBootSplash.hide({ fade: true });
+      setupRootStore().then(setRootStore).finally(()=>{
+      RNBootSplash.hide({ fade: true });
       })
     })()
   }, [])
@@ -66,7 +66,6 @@ function App() {
           <ErrorBoundary catchErrors={"always"}>
             <AppNavigator
               initialState={initialNavigationState}
-              onStateChange={onNavigationStateChange}
             />
             <StatusBar hidden={true}/>
             <Toast />

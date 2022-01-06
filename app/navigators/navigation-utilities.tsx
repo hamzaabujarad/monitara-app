@@ -89,7 +89,7 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
   // It is selectively enabled in development mode with
   // the following approach. If you'd like to use navigation persistence
   // in production, remove the __DEV__ and set the state to true
-  const [isRestored, setIsRestored] = useState(!__DEV__)
+  const [isRestored, setIsRestored] = useState(false)
 
   const routeNameRef = useRef<string | undefined>()
 
@@ -105,13 +105,13 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
     // Save the current route name for later comparision
     routeNameRef.current = currentRouteName
 
-    // Persist state to storage
-    storage.save(persistenceKey, state)
+    // // Persist state to storage
+    // storage.save(persistenceKey, state)
   }
 
   const restoreState = async () => {
     try {
-      const state = await storage.load(persistenceKey)
+      const state = null
       if (state) setInitialNavigationState(state)
     } finally {
       setIsRestored(true)

@@ -24,12 +24,6 @@ const logoTextStyle: TextStyle = {
   fontSize: 20,
   marginBottom: 20,
 }
-const errorTextStyle: TextStyle = {
-  color: color.error,
-  alignSelf: "flex-start",
-  paddingLeft: "13%",
-  fontSize: 13,
-}
 
 export const LoginScreen = observer(function LoginScreen() {
   // Pull in one of our MST stores
@@ -78,7 +72,7 @@ export const LoginScreen = observer(function LoginScreen() {
         autoCorrect={false}
         returnKeyType="next"
         onChangeText={(v) => setEmail(v)}
-        w={{ base: "75%", md: "25%" }}
+        w={{ base: "75%" }}
         h={{ base: "16%" }}
         onSubmitEditing={() => passwordInputRef.current.focus()}
         bgColor={color.palette.white}
@@ -128,7 +122,7 @@ export const LoginScreen = observer(function LoginScreen() {
         disabled={loading}
         isLoading={loading}
         onPressIn={onLoginButtonPressed}
-        isLoadingText={"Loaning"}
+        isLoadingText={"logging"}
         colorScheme="orange"
         width={"75%"}
         onPress={() => [setFieldValue("email", email), setFieldValue("password", password)]}
@@ -172,8 +166,8 @@ export const LoginScreen = observer(function LoginScreen() {
         {renderLogo()}
         {renderLogoText()}
         {renderLoginControls()}
-        {renderCopyRightLabel()}
       </Box>
+      {renderCopyRightLabel()}
     </Screen>
   )
 })
