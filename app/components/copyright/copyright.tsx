@@ -6,7 +6,7 @@ const CONTAINER: ViewStyle = {
   justifyContent: "center",
   alignItems:'center',
   position:'absolute',
-  bottom:20,
+  bottom:15,
   left:'0%',
   right:0
 }

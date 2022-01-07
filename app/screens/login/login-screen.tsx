@@ -180,7 +180,7 @@ export const LoginScreen = observer(function LoginScreen() {
         {renderLogoText()}
         {renderLoginControls()}
       </Box>
-      {renderCopyRightLabel()}
+      <Box flex={1}>{renderCopyRightLabel()}</Box>
       {environmentActionSheet()}
     </Screen>
   )
