@@ -17,13 +17,17 @@ export const SplashScreen = observer(function SplashScreen() {
   // Pull in one of our MST stores
   const {
     authenticationStore: { updateIsSignedIn, checkIfUserSignIn },
+    notificationStore: { updateMobileInstances },
   } = useStores()
   // Pull in navigation via hook
   const navigation = useNavigation()
 
   const ifUserSignIn = () => {
     checkIfUserSignIn().then((isSign: boolean) => {
-      if (isSign) return updateIsSignedIn(true)
+      if (isSign) {
+        updateMobileInstances()
+        updateIsSignedIn(true)
+      }
       return navigation.navigate("login") as never
     })
   }

@@ -1,27 +1,26 @@
 import * as React from "react"
-import { Button, StyleProp, ViewStyle } from "react-native"
-import { observer } from "mobx-react-lite"
-
 import notifee from "@notifee/react-native"
-
 import messaging from "@react-native-firebase/messaging"
 import { saveString } from "../../utils/storage/storage"
-const CONTAINER: ViewStyle = {
-  justifyContent: "center",
-}
-
-export interface NotificationProps {
-  /**
-   * An optional style override useful for padding & margin.
-   */
-  style?: StyleProp<ViewStyle>
-}
 
 /**
- * Describe your component here
+ * Notification controller component
  */
-export const Notification = observer(function Notification(props: NotificationProps) {
-  async function onDisplayNotification(remoteMessage) {
+export const Notification = React.memo(() => {
+  
+  
+  
+  React.useEffect(() => {
+    messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+      displayNotification(remoteMessage)
+    })
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      displayNotification(remoteMessage)
+    })
+    return unsubscribe
+  }, [])
+
+  async function displayNotification(remoteMessage) {
     // Create a channel
     const channelId = await notifee.createChannel({
       id: "default",
@@ -30,22 +29,14 @@ export const Notification = observer(function Notification(props: NotificationPr
 
     // Display a notification
     await notifee.displayNotification({
-      title: "Notification Title",
-      body: "Main body content of the notification",
+      title: remoteMessage.notification.title,
+      body: remoteMessage.notification.body,
       android: {
         channelId,
         smallIcon: "ic_launcher", // optional, defaults to 'ic_launcher'.
       },
     })
   }
-
-  React.useEffect(() => {
-    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-      console.log("remoteMessage", JSON.stringify(remoteMessage))
-      // onDisplayNotification(remoteMessage)
-    })
-    return unsubscribe
-  }, [])
 
   React.useEffect(() => {
     requestUserPermission().then((isEnable) => {
@@ -61,7 +52,6 @@ export const Notification = observer(function Notification(props: NotificationPr
       .then(async (fcmToken) => {
         if (fcmToken) {
           await saveString("fcmToken", fcmToken)
-          console.log("fcmToken", fcmToken)
         }
       })
       .catch((e) => {
@@ -81,5 +71,5 @@ export const Notification = observer(function Notification(props: NotificationPr
     }
     return false
   }
-  return <Button title="Display Notification" onPress={() => onDisplayNotification("Asdasd")} />
+  return null
 })
