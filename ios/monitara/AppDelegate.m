@@ -12,7 +12,7 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-
+#import <Firebase.h>
 
 #import "RNBootSplash.h" // <- add the header import
 
@@ -57,6 +57,7 @@ static void InitializeFlipper(UIApplication *application) {
 
   [super application:application didFinishLaunchingWithOptions:launchOptions];
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+  [FIRApp configure];
   return YES;
 }
 

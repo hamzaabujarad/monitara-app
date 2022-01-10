@@ -2,6 +2,8 @@ import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
+import { load } from "../../utils/storage"
+import { User } from "../../models"
 
 /**
  * Manages all requests to the API.
@@ -42,8 +44,11 @@ export class Api {
         Accept: "application/json",
       },
     })
-    this.apisauce.addAsyncRequestTransform(request => async () => {
-    
+    this.apisauce.addAsyncRequestTransform((request) => async () => {
+      const userData: User = await load("user-data")
+      if (userData) {
+        request.headers["Authorization"] = `Bearer ${userData.accessToken}`
+      }
     })
   }
 
@@ -80,10 +85,8 @@ export class Api {
 
     // transform the data into the format we are expecting
     try {
-   
       const rawLogin = response.data
-      const result: Types.Login = convertLogin(rawLogin);
-      console.log(result)
+      const result: Types.Login = convertLogin(rawLogin)
       return { kind: "ok", login: result }
     } catch {
       console.log("error")
@@ -91,59 +94,56 @@ export class Api {
     }
   }
 
-  // /**
-  //  * Gets a list of users.
-  //  */
-  // async getUsers(): Promise<Types.GetUsersResult> {
-  //   // make the api call
-  //   const response: ApiResponse<any> = await this.apisauce.get(`/users`)
+  /**
+   *  register mobile information
+   */
+  async registerMobileInstances(
+    payLoad: Types.MobileAppInstances,
+  ): Promise<Types.GetMobileAppInstancesResult> {
+    // make the api call
+    const response: ApiResponse<any> = await this.apisauce.post(
+      `/TenantManagement/MobileAppInstances`,
+      {
+        ...payLoad,
+      },
+    )
 
-  //   // the typical ways to die when calling an api
-  //   if (!response.ok) {
-  //     const problem = getGeneralApiProblem(response)
-  //     if (problem) return problem
-  //   }
+    // the typical ways to die when calling an api
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
 
-  //   const convertUser = (raw) => {
-  //     return {
-  //       id: raw.id,
-  //       name: raw.name,
-  //     }
-  //   }
+    // transform the data into the format we are expecting
+    try {
+      return { kind: "ok" }
+    } catch {
+      return { kind: "bad-data" }
+    }
+  }
 
-  //   // transform the data into the format we are expecting
-  //   try {
-  //     const rawUsers = response.data
-  //     const resultUsers: Types.User[] = rawUsers.map(convertUser)
-  //     return { kind: "ok", users: resultUsers }
-  //   } catch {
-  //     return { kind: "bad-data" }
-  //   }
-  // }
+  /**
+   *  register mobile information
+   */
+  async updateMobileInstances(deviceToken
+  ): Promise<Types.GetMobileAppInstancesResult> {
+    // make the api call
+    const response: ApiResponse<any> = await this.apisauce.put(
+      `/TenantManagement/MobileAppInstances?deviceToken=${deviceToken}`,
+    )
 
-  // /**
-  //  * Gets a single user by ID
-  //  */
+    // the typical ways to die when calling an api
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
 
-  // async getUser(id: string): Promise<Types.GetUserResult> {
-  //   // make the api call
-  //   const response: ApiResponse<any> = await this.apisauce.get(`/users/${id}`)
-
-  //   // the typical ways to die when calling an api
-  //   if (!response.ok) {
-  //     const problem = getGeneralApiProblem(response)
-  //     if (problem) return problem
-  //   }
-
-  //   // transform the data into the format we are expecting
-  //   try {
-  //     const resultUser: Types.User = {
-  //       id: response.data.id,
-  //       name: response.data.name,
-  //     }
-  //     return { kind: "ok", user: resultUser }
-  //   } catch {
-  //     return { kind: "bad-data" }
-  //   }
-  // }
+    // transform the data into the format we are expecting
+    try {
+      return { kind: "ok" }
+    } catch {
+      console.log("error")
+      return { kind: "bad-data" }
+    }
+  }
 }

@@ -9,6 +9,7 @@ import com.facebook.react.ReactActivityDelegate; // <- add this necessary import
 import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
 import expo.modules.ReactActivityDelegateWrapper;
 
+
 public class MainActivity extends ReactActivity {
 
   /**

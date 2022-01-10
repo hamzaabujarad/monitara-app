@@ -1,8 +1,7 @@
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
-import { withEnvironment } from ".."
+import { withEnvironment, withRootStore } from ".."
 import jwt_decode from "jwt-decode"
 import { load, save } from "../../utils/storage"
-
 
 export interface User {
   Account: string
@@ -23,6 +22,7 @@ export interface User {
 export const AuthenticationModel = types
   .model("Authentication")
   .extend(withEnvironment)
+  .extend(withRootStore)
   .props({
     isSignedIn: types.optional(types.boolean, false),
     identifier: types.optional(types.string, ""),
@@ -45,8 +45,10 @@ export const AuthenticationModel = types
         decode["password"] = secret
         //save user data based on access token decoder data
         yield save("user-data", decode)
+        yield self.rootStore.notificationStore.registerMobileInstances()
         self.updateIsSignedIn(true)
         self.updateAccessToken(login.accessToken)
+
         return true
       } else {
         throw new Error(login.errorMessages)
@@ -54,7 +56,7 @@ export const AuthenticationModel = types
     }),
   }))
   .actions((self) => ({
-    async checkIfUserSignIn()  {
+    async checkIfUserSignIn() {
       try {
         const userData: User = await load("user-data")
         if (userData == null) return false
@@ -62,7 +64,7 @@ export const AuthenticationModel = types
       } catch (error) {
         return false
       }
-    }
+    },
   }))
 
 type AuthenticationType = Instance<typeof AuthenticationModel>

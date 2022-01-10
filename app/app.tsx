@@ -22,6 +22,7 @@ import { ErrorBoundary } from "./screens/error/error-boundary"
 import { NativeBaseProvider, StatusBar } from "native-base"
 import RNBootSplash from "react-native-bootsplash";
 import Toast from 'react-native-toast-message';
+import { Notification } from "./components"
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
@@ -60,7 +61,6 @@ function App() {
   // otherwise, we're ready to render the app
   return (
     <NativeBaseProvider>
-    <ToggleStorybook>
       <RootStoreProvider value={rootStore}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ErrorBoundary catchErrors={"always"}>
@@ -69,10 +69,10 @@ function App() {
             />
             <StatusBar hidden={true}/>
             <Toast />
+            <Notification/>
           </ErrorBoundary>
         </SafeAreaProvider>
       </RootStoreProvider>
-    </ToggleStorybook>
     </NativeBaseProvider>
   )
 }

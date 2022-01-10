@@ -112,7 +112,7 @@ export const LoginScreen = observer(function LoginScreen() {
         onChangeText={(v) => setPassword(v)}
         bgColor={color.palette.white}
         placeholder={`${translate("loginScreen.passwordPlaceHolder")}`}
-        InputRightElement={renderSecureTextButton()}
+        // InputRightElement={renderSecureTextButton()}
       />
     )
   }
@@ -149,7 +149,7 @@ export const LoginScreen = observer(function LoginScreen() {
         }}
         validationSchema={LoginSchema}
       >
-        {({ errors, setFieldValue }) => {
+        {({ setFieldValue }) => {
           {
             return (
               <Stack space={6} w="100%" alignItems="center">

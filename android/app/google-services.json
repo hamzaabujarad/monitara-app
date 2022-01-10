@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "685696520160",
+    "firebase_url": "https://monitara-1a3f0.firebaseio.com",
+    "project_id": "monitara-1a3f0",
+    "storage_bucket": "monitara-1a3f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685696520160:android:ff717970152d5a1f53a585",
+        "android_client_info": {
+          "package_name": "com.monitara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685696520160-nnt24t89hidcrbucgm0v88e1sotko62b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Uihbo9-5WvXyiBwm0wYRq3mZResOesI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685696520160-nnt24t89hidcrbucgm0v88e1sotko62b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685696520160-e9bo1r0jemu59acnv9m4804nhk3e9uf8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.monitara"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

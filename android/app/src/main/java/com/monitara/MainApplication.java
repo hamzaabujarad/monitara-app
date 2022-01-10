@@ -21,8 +21,8 @@ import expo.modules.ReactNativeHostWrapper;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import com.facebook.react.bridge.JSIModulePackage; // <- add
-import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add
+import com.monitara.CustomMMKVJSIModulePackage; // <- add here
+import com.facebook.react.bridge.JSIModulePackage; // <-- ADD THIS
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(
@@ -36,8 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
 
       @Override
       protected JSIModulePackage getJSIModulePackage() {
-           new RNMMKVJSIModulePackage();
-         return new ReanimatedJSIModulePackage();
+         return new CustomMMKVJSIModulePackage();
         }
 
         @Override

@@ -10,7 +10,7 @@ export const withRootStore = (self: IStateTreeNode) => ({
     /**
      * The root store.
      */
-    get rootStore(): RootStore {
+    get rootStore(): RootStore | any {
       return getRoot<typeof RootStoreModel>(self)
     },
   },
