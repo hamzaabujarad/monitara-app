@@ -54,8 +54,10 @@ const AppStack = observer(() => {
 const AppDrawer = () => {
   return (
     <Drawer.Navigator
-
-      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="home"
     >
       <Drawer.Screen name="home" component={HomeScreen} />
     </Drawer.Navigator>
@@ -70,7 +72,7 @@ export const AppNavigator = observer((props: NavigationProps) => {
   // Pull in one of our MST stores
   const {
     authenticationStore: { isSignedIn },
-  } = useStores();
+  } = useStores()
   return (
     <NavigationContainer
       ref={navigationRef}
@@ -93,5 +95,5 @@ AppNavigator.displayName = "AppNavigator"
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["welcome"]
+const exitRoutes = ["home,login"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)
