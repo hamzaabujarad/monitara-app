@@ -4,7 +4,13 @@
     "cancel": "Cancel",
     "back": "Back",
     "home":"Home",
-    "dashboard":"DashBoard"
+    "dashboard":"DashBoard",
+    "settings":"Settings",
+    "about":"About us",
+    "logout":"Logout",
+    "yes":"Yes",
+    "no":"No",
+    "logoutMessage":"Are you sure you want to log out?"
   },
   "loginScreen":{
     "emailPlaceHolder":"Email",

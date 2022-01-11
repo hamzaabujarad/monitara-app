@@ -7,11 +7,9 @@ import { saveString } from "../../utils/storage/storage"
  * Notification controller component
  */
 export const Notification = React.memo(() => {
-  
-  
-  
   React.useEffect(() => {
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+      console.log("remote", remoteMessage)
       displayNotification(remoteMessage)
     })
     const unsubscribe = messaging().onMessage(async (remoteMessage) => {

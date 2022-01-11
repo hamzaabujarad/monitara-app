@@ -57,7 +57,9 @@ static void InitializeFlipper(UIApplication *application) {
 
   [super application:application didFinishLaunchingWithOptions:launchOptions];
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
-  [FIRApp configure];
+  if ([FIRApp defaultApp] == nil) {
+      [FIRApp configure];
+  }
   return YES;
 }
 

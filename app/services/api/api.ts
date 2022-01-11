@@ -131,9 +131,6 @@ export class Api {
     const response: ApiResponse<any> = await this.apisauce.put(
       `/TenantManagement/MobileAppInstances?deviceToken=${deviceToken}`,
     )
-
-    console.log("resp",response)
-
     // the typical ways to die when calling an api
     if (!response.ok) {
       const problem = getGeneralApiProblem(response)

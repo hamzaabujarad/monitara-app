@@ -60,6 +60,7 @@
 		4D40708BE521DBE7DC6E68C8 /* Pods-monitara.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-monitara.release.xcconfig"; path = "Target Support Files/Pods-monitara/Pods-monitara.release.xcconfig"; sourceTree = "<group>"; };
 		7AE3D27227846C3F00F902C0 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = monitara/BootSplash.storyboard; sourceTree = "<group>"; };
 		7AED8C44278C0C9F000A1385 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7AED8C46278DAD33000A1385 /* monitara.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = monitara.entitlements; path = monitara/monitara.entitlements; sourceTree = "<group>"; };
 		8D3D2E99D3814D73E5353ACB /* Pods-monitara-monitaraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-monitara-monitaraTests.debug.xcconfig"; path = "Target Support Files/Pods-monitara-monitaraTests/Pods-monitara-monitaraTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5CD00143C8AA5EF71C17FFB /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-monitara/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		E9A75AE3274586F80062D054 /* monitara-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "monitara-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		13B07FAE1A68108700A75B9A /* monitara */ = {
 			isa = PBXGroup;
 			children = (
+				7AED8C46278DAD33000A1385 /* monitara.entitlements */,
 				7AED8C44278C0C9F000A1385 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -318,11 +320,13 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 6UQ8G73G36;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 52Q6QSMSJH;
+						DevelopmentTeam = 6UQ8G73G36;
 						LastSwiftMigration = 1310;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -330,6 +334,7 @@
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6UQ8G73G36;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -724,6 +729,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6UQ8G73G36;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -749,6 +755,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 6UQ8G73G36;
 				INFOPLIST_FILE = monitaraTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -769,8 +776,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = monitara/monitara.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 52Q6QSMSJH;
+				DEVELOPMENT_TEAM = 6UQ8G73G36;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = monitara/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -782,6 +792,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.monitara;
 				PRODUCT_NAME = monitara;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "monitara-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -796,8 +807,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = monitara/monitara.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 52Q6QSMSJH;
+				DEVELOPMENT_TEAM = 6UQ8G73G36;
 				INFOPLIST_FILE = monitara/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.2;
@@ -808,6 +822,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.monitara;
 				PRODUCT_NAME = monitara;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "monitara-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -878,6 +893,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6UQ8G73G36;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "monitara-tvOSTests/Info.plist";
@@ -905,6 +921,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6UQ8G73G36;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "monitara-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

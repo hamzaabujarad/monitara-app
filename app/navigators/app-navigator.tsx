@@ -9,7 +9,14 @@ import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
-import { DashboardScreen, HomeScreen, LoginScreen, SplashScreen } from "../screens"
+import {
+  DashboardScreen,
+  HomeScreen,
+  LoginScreen,
+  SplashScreen,
+  SettingsScreen,
+  AboutScreen,
+} from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -28,6 +35,8 @@ export type NavigatorParamList = {
   splash: undefined
   home: undefined
   dashboard: undefined
+  settings: undefined
+  logout: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -65,6 +74,7 @@ const AppDrawer = () => {
     >
       <Drawer.Screen name="home" component={HomeScreen} />
       <Drawer.Screen name="dashboard" component={DashboardScreen} />
+      <Drawer.Screen name="settings" component={SettingsScreen} />
     </Drawer.Navigator>
   )
 }

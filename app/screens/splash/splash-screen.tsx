@@ -17,7 +17,7 @@ export const SplashScreen = observer(function SplashScreen() {
   // Pull in one of our MST stores
   const {
     authenticationStore: { updateIsSignedIn, checkIfUserSignIn },
-    notificationStore: { updateMobileInstances },
+  notificationStore: { updateMobileInstances },
   } = useStores()
   // Pull in navigation via hook
   const navigation = useNavigation()

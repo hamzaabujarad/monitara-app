@@ -12,7 +12,7 @@ export interface TextProps extends TextProperties {
   /**
    * Text which is looked up via i18n.
    */
-  tx?: TxKeyPath
+  tx?: TxKeyPath | string
 
   /**
    * Optional options to pass to i18n. Useful for interpolation
