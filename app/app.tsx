@@ -20,9 +20,9 @@ import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 import { ToggleStorybook } from "../storybook/toggle-storybook"
 import { ErrorBoundary } from "./screens/error/error-boundary"
 import { NativeBaseProvider, StatusBar } from "native-base"
-import RNBootSplash from "react-native-bootsplash";
-import Toast from 'react-native-toast-message';
-import { Notification } from "./components"
+import RNBootSplash from "react-native-bootsplash"
+import Toast from "react-native-toast-message"
+import { DarkModeHandler, Notification } from "./components"
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
@@ -44,9 +44,11 @@ function App() {
   useEffect(() => {
     ;(async () => {
       await initFonts() // expo
-      setupRootStore().then(setRootStore).finally(()=>{
-      RNBootSplash.hide({ fade: true });
-      })
+      setupRootStore()
+        .then(setRootStore)
+        .finally(() => {
+          RNBootSplash.hide({ fade: true })
+        })
     })()
   }, [])
 
@@ -64,12 +66,11 @@ function App() {
       <RootStoreProvider value={rootStore}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ErrorBoundary catchErrors={"always"}>
-            <AppNavigator
-              initialState={initialNavigationState}
-            />
-            <StatusBar hidden={true}/>
+            <AppNavigator initialState={initialNavigationState} />
+            <StatusBar hidden={true} />
             <Toast />
-            <Notification/>
+            <Notification />
+            <DarkModeHandler />
           </ErrorBoundary>
         </SafeAreaProvider>
       </RootStoreProvider>

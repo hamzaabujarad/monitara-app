@@ -9,7 +9,7 @@ import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
-import { HomeScreen, LoginScreen, SplashScreen } from "../screens"
+import { DashboardScreen, HomeScreen, LoginScreen, SplashScreen } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -27,6 +27,7 @@ export type NavigatorParamList = {
   login: undefined
   splash: undefined
   home: undefined
+  dashboard: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -35,10 +36,11 @@ const Stack = createNativeStackNavigator<NavigatorParamList>()
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../models"
+import { CustomDrawerContent } from "./CustomDrawer"
 
 const Drawer = createDrawerNavigator()
 
-const AppStack = observer(() => {
+const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -50,16 +52,19 @@ const AppStack = observer(() => {
       <Stack.Screen name="login" component={LoginScreen} />
     </Stack.Navigator>
   )
-})
+}
+
 const AppDrawer = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
       }}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       initialRouteName="home"
     >
       <Drawer.Screen name="home" component={HomeScreen} />
+      <Drawer.Screen name="dashboard" component={DashboardScreen} />
     </Drawer.Navigator>
   )
 }

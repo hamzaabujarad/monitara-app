@@ -3,6 +3,9 @@ import { KeyboardAvoidingView, Platform, ScrollView, StatusBar, View } from "rea
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { ScreenProps } from "./screen.props"
 import { isNonScrolling, offsets, presets } from "./screen.presets"
+import { observer } from "mobx-react-lite"
+import { useStores } from "../../models"
+import { color } from "../../theme"
 
 const isIos = Platform.OS === "ios"
 
@@ -10,7 +13,11 @@ function ScreenWithoutScrolling(props: ScreenProps) {
   const insets = useSafeAreaInsets()
   const preset = presets.fixed
   const style = props.style || {}
-  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
+  const backgroundStyle = props.backgroundColor
+    ? { backgroundColor: props.backgroundColor }
+    : {
+        backgroundColor: props.darkMode ? color.background : color.palette.white,
+      }
   const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top }
 
   return (
@@ -29,7 +36,11 @@ function ScreenWithScrolling(props: ScreenProps) {
   const insets = useSafeAreaInsets()
   const preset = presets.scroll
   const style = props.style || {}
-  const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
+  const backgroundStyle = props.backgroundColor
+    ? { backgroundColor: props.backgroundColor }
+    : {
+        backgroundColor: props.darkMode ? color.background : color.palette.white,
+      }
   const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top }
 
   return (
@@ -57,10 +68,15 @@ function ScreenWithScrolling(props: ScreenProps) {
  *
  * @param props The screen props
  */
-export function Screen(props: ScreenProps) {
+export const Screen = observer(function Screen(props: ScreenProps) {
+  //pull mst
+  const {
+    appThemeStore: { darkMode },
+  } = useStores()
+
   if (isNonScrolling(props.preset)) {
-    return <ScreenWithoutScrolling {...props} />
+    return <ScreenWithoutScrolling darkMode={darkMode} {...props} />
   } else {
-    return <ScreenWithScrolling {...props} />
+    return <ScreenWithScrolling darkMode={darkMode} {...props} />
   }
-}
+})

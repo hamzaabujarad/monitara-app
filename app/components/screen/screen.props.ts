@@ -43,4 +43,10 @@ export interface ScreenProps {
    * Only applies to scroll preset.
    */
   keyboardShouldPersistTaps?: "handled" | "always" | "never"
+
+  /**
+   * dark mode status
+   */
+  darkMode?: boolean
+
 }

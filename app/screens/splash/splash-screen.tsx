@@ -39,6 +39,7 @@ export const SplashScreen = observer(function SplashScreen() {
   return (
     <Screen style={ROOT} preset="fixed">
       <Logo
+        stop={true}
         style={{
           width: 100,
           height: 100,

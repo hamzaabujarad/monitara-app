@@ -13,12 +13,11 @@ import { LoginSchema } from "../../utils/validations"
 import { showToast } from "../../utils/general-utils"
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.background,
   flex: 1,
 }
 const LogoStyle: ViewStyle = {
-  width: 150,
-  height: 150,
+  width: 180,
+  height: 180,
 }
 const logoTextStyle: TextStyle = {
   fontSize: 20,
@@ -112,7 +111,7 @@ export const LoginScreen = observer(function LoginScreen() {
         onChangeText={(v) => setPassword(v)}
         bgColor={color.palette.white}
         placeholder={`${translate("loginScreen.passwordPlaceHolder")}`}
-        // InputRightElement={renderSecureTextButton()}
+        InputRightElement={renderSecureTextButton()}
       />
     )
   }

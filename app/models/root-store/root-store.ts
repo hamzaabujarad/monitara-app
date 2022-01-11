@@ -1,4 +1,5 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { AppthemeModel } from "../apptheme/apptheme"
 import { AuthenticationModel } from "../authentication/authentication"
 import { NotificationModel } from "../notification/notification"
 
@@ -8,7 +9,8 @@ import { NotificationModel } from "../notification/notification"
 // prettier-ignore
 export const RootStoreModel = types.model("RootStore").props({
   authenticationStore:types.optional(AuthenticationModel,{}),
-  notificationStore:types.optional(NotificationModel,{})
+  notificationStore:types.optional(NotificationModel,{}),
+  appThemeStore:types.optional(AppthemeModel,{})
 })
 
 /**
