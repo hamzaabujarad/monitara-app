@@ -1,20 +1,19 @@
 import * as React from "react"
 import { StyleProp, TextStyle, View, ViewStyle } from "react-native"
-import { color, typography } from "../../theme"
+import { typography } from "../../theme"
 import { Text } from "../text/text"
 const CONTAINER: ViewStyle = {
   justifyContent: "center",
-  alignItems:'center',
-  position:'absolute',
-  bottom:15,
-  left:'0%',
-  right:0
+  alignItems: "center",
+  position: "absolute",
+  bottom: 15,
+  left: "0%",
+  right: 0,
 }
 
 const TEXT: TextStyle = {
   fontFamily: typography.primary,
-  fontSize: 12,
-  color: color.palette.white,
+  fontSize: 13,
 }
 
 export interface CopyrightProps {
@@ -27,7 +26,7 @@ export interface CopyrightProps {
 /**
  * CopyRight Component
  */
-export const Copyright = React.memo(()=> {
+export const Copyright = React.memo(() => {
   return (
     <View style={CONTAINER}>
       <Text style={TEXT}>Copyright&copy;2022 Tahaluf Al Emarat Technical Solutions</Text>

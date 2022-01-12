@@ -1,21 +1,18 @@
 import React from "react"
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer"
+import { DrawerContentScrollView } from "@react-navigation/drawer"
 import { Box, Divider, VStack, HStack, Pressable, Icon } from "native-base"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import { Logo, Text } from "../components"
 import { translate } from "../i18n"
 import { ImageStyle } from "react-native-fast-image"
-import { Alert, TextStyle } from "react-native"
+import { Alert } from "react-native"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../models"
 import { clear } from "../utils/storage"
-
+import RNRestart from "react-native-restart"
 const logoStyle: ImageStyle = {
   width: 50,
   height: 50,
-}
-const logoutIconStyle: TextStyle = {
-  fontSize: 25,
 }
 
 export const CustomDrawerContent = observer(function CustomDrawerContent(props: any) {
@@ -61,6 +58,7 @@ export const CustomDrawerContent = observer(function CustomDrawerContent(props: 
     try {
       //clear all local storage
       clear()
+      RNRestart.Restart()
     } catch (error) {}
   }
 
@@ -100,6 +98,26 @@ export const CustomDrawerContent = observer(function CustomDrawerContent(props: 
     )
   }
 
+  const renderLogoutButton = () => {
+    const keyTranslate: string = `common.logout`
+    return (
+      <Pressable
+        px={3}
+        py={2.5}
+        roundedTopRight={"3xl"}
+        roundedBottomRight={"3xl"}
+        bg={"transparent"}
+        onPress={handleOnLogoutButtonPressed}
+      >
+        <HStack space={2} alignItems="center">
+          <Icon color={"gray.500"} size={7} as={<MaterialIcons name={getIcon("logout")} />} />
+
+          <Text>{translate(keyTranslate)}</Text>
+        </HStack>
+      </Pressable>
+    )
+  }
+
   return (
     <DrawerContentScrollView {...props}>
       <VStack space={2} my={2} mx={1}>
@@ -107,14 +125,7 @@ export const CustomDrawerContent = observer(function CustomDrawerContent(props: 
         <Divider />
         <VStack space={2}>
           {props.state.routeNames.map((name, index) => renderDrawerItemButton(index, name))}
-          <DrawerItem
-            icon={() => <MaterialIcons style={logoutIconStyle} name={"logout"} />}
-            label="Logout"
-            style={{
-              marginRight: "20%",
-            }}
-            onPress={handleOnLogoutButtonPressed}
-          />
+          {renderLogoutButton()}
         </VStack>
       </VStack>
     </DrawerContentScrollView>

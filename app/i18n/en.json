@@ -10,7 +10,7 @@
     "logout":"Logout",
     "yes":"Yes",
     "no":"No",
-    "logoutMessage":"Are you sure you want to log out?"
+    "logoutMessage":"Are you sure you want to logout?"
   },
   "loginScreen":{
     "emailPlaceHolder":"Email",
