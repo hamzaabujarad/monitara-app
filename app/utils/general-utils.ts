@@ -1,18 +1,33 @@
-import Toast from "react-native-toast-message";
+import Toast from "react-native-toast-message"
 
 /**
- * 
- * @param errorMessage 
- * @param type 
- * @param time 
+ *
+ * @param errorMessage
+ * @param type
+ * @param time
  * @returns Toast
  */
 
-export const showToast = (errorMessage:string, type:"error" |"success" | "info", time ) => {
+export const showToast = (
+  errorMessage: string,
+  type: "error" | "success" | "info",
+  time,
+  position: "top" | "bottom" = "bottom",
+) => {
   return Toast.show({
     type: type,
-    position:"bottom",
+    position: position,
     text2: errorMessage,
-    visibilityTime:time
-  });
+    visibilityTime: time,
+  })
+}
+
+/**
+ *
+ */
+
+export const saveDefaultEnvironment = () => {
+  try {
+    
+  } catch (error) {}
 }

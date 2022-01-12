@@ -48,10 +48,12 @@ export const AuthenticationModel = types
         yield self.rootStore.notificationStore.registerMobileInstances()
         self.updateIsSignedIn(true)
         self.updateAccessToken(login.accessToken)
-
         return true
       } else {
-        throw new Error(login.errorMessages)
+        if (login) {
+          throw new Error(login.errorMessages)
+        }
+        throw new Error(kind)
       }
     }),
   }))

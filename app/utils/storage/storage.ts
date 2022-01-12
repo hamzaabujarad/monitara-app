@@ -1,9 +1,6 @@
-import MMKVStorage from "react-native-mmkv-storage";
+import MMKVStorage from "react-native-mmkv-storage"
 
-
-const MMKV = new MMKVStorage.Loader()
-  .withInstanceID("__monitara")
-  .initialize();
+const MMKV = new MMKVStorage.Loader().withInstanceID("__monitara").initialize()
 
 /**
  * Loads a string from storage.
@@ -27,8 +24,7 @@ export async function loadString(key: string): Promise<string | null> {
  */
 export async function saveString(key: string, value: string): Promise<boolean> {
   try {
-
-    await MMKV.setStringAsync(key,value);
+    await MMKV.setStringAsync(key, value)
     return true
   } catch {
     return false
@@ -42,7 +38,7 @@ export async function saveString(key: string, value: string): Promise<boolean> {
  */
 export async function load(key: string): Promise<any | null> {
   try {
-    const almostThere = await MMKV.getStringAsync(key);
+    const almostThere = await MMKV.getStringAsync(key)
     return JSON.parse(almostThere)
   } catch {
     return null
@@ -63,15 +59,27 @@ export async function save(key: string, value: any): Promise<boolean> {
     return false
   }
 }
+/**
+ * Loads a string from storage (Async).
+ *
+ * @param key The key to fetch.
+ */
+export function loadStringSync(key: string): string {
+  try {
+    return MMKV.getString(key)
+  } catch {
+    return ""
+  }
+}
 
 /**
  * Removes something from storage.
  *
  * @param key The key to kill.
  */
-export  function remove(key: string): void {
+export function remove(key: string): void {
   try {
-     MMKV.removeItem(key)
+    MMKV.removeItem(key)
   } catch {}
 }
 
@@ -80,6 +88,6 @@ export  function remove(key: string): void {
  */
 export function clear(): void {
   try {
-    MMKV.clearStore();
+    MMKV.clearStore()
   } catch {}
 }

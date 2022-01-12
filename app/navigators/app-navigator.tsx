@@ -15,7 +15,6 @@ import {
   LoginScreen,
   SplashScreen,
   SettingsScreen,
-  AboutScreen,
 } from "../screens"
 
 /**

@@ -53,6 +53,14 @@ export class Api {
   }
 
   /**
+   * Change baseUrl On fly
+   * @param baseURL
+   */
+  changeEnvironment(baseURL: string) {
+    this.apisauce.setBaseURL(baseURL)
+  }
+
+  /**
    *  authenticate user
    */
   async login(identifier: string, secret: string): Promise<Types.GetLoginResult> {
@@ -125,11 +133,33 @@ export class Api {
   /**
    *  register mobile information
    */
-  async updateMobileInstances(deviceToken
-  ): Promise<Types.GetMobileAppInstancesResult> {
+  async updateMobileInstances(deviceToken): Promise<Types.GetMobileAppInstancesResult> {
     // make the api call
     const response: ApiResponse<any> = await this.apisauce.put(
       `/TenantManagement/MobileAppInstances?deviceToken=${deviceToken}`,
+    )
+    // the typical ways to die when calling an api
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+
+    // transform the data into the format we are expecting
+    try {
+      return { kind: "ok" }
+    } catch {
+      console.log("error")
+      return { kind: "bad-data" }
+    }
+  }
+
+  /**
+   *  only for testing
+   */
+  async getLiveEnvironment(code): Promise<Types.GetMobileAppInstancesResult> {
+    // make the api call
+    const response: ApiResponse<any> = await this.apisauce.get(
+      `/PublicManagement/LiveEnvironments/${code}`,
     )
     // the typical ways to die when calling an api
     if (!response.ok) {

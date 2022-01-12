@@ -9,7 +9,6 @@ import { saveString } from "../../utils/storage/storage"
 export const Notification = React.memo(() => {
   React.useEffect(() => {
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-      console.log("remote", remoteMessage)
       displayNotification(remoteMessage)
     })
     const unsubscribe = messaging().onMessage(async (remoteMessage) => {
@@ -64,7 +63,6 @@ export const Notification = React.memo(() => {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL
 
     if (enabled) {
-      console.log("Authorization status:", authStatus)
       return true
     }
     return false

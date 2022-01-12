@@ -1,17 +1,18 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
 import { TextStyle, ViewStyle } from "react-native"
-import { Copyright, Environments, Logo, Screen, Text } from "../../components"
+import { Copyright, Logo, Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { color } from "../../theme"
-import { Box, Button, Input, Stack } from "native-base"
+import { Box, Button, Input, Menu, Pressable, Stack } from "native-base"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { translate } from "../../i18n/translate"
 import { Formik } from "formik"
 import { LoginSchema } from "../../utils/validations"
 import { showToast } from "../../utils/general-utils"
-
+import { saveString } from "../../utils/storage"
+import RNRestart from "react-native-restart"
 const ROOT: ViewStyle = {
   flex: 1,
 }
@@ -36,9 +37,6 @@ export const LoginScreen = observer(function LoginScreen() {
   //refs
   const emailInputRef: any = React.createRef()
   const passwordInputRef: any = React.createRef()
-  const actionSheetRef: any = React.createRef()
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
 
   const renderLogo = () => {
     return <Logo style={LogoStyle} />
@@ -111,7 +109,7 @@ export const LoginScreen = observer(function LoginScreen() {
         onChangeText={(v) => setPassword(v)}
         bgColor={color.palette.white}
         placeholder={`${translate("loginScreen.passwordPlaceHolder")}`}
-        InputRightElement={renderSecureTextButton()}
+        // InputRightElement={renderSecureTextButton()}
       />
     )
   }
@@ -131,11 +129,33 @@ export const LoginScreen = observer(function LoginScreen() {
       </Button>
     )
   }
+
+  const onDefaultEvnChange = (env) => {
+    saveString("dev-env", env)
+      .then(() => {
+        RNRestart.Restart()
+      })
+      .catch((e) => {
+        console.log("e", e)
+      })
+  }
+
+  // for testing only should be remove on production mode
   const renderEnverninetButton = () => {
     return (
-      <Button onPress={() => actionSheetRef.current?.setModalVisible()} size="sm" variant="ghost">
-        {translate("loginScreen.changeEnvironment")}
-      </Button>
+      <Menu
+        trigger={(triggerProps) => {
+          return (
+            <Pressable {...triggerProps}>
+              <Text> {translate("loginScreen.changeEnvironment")}</Text>
+            </Pressable>
+          )
+        }}
+      >
+        <Menu.Item onPress={() => onDefaultEvnChange("production")}>Monitara</Menu.Item>
+        <Menu.Item onPress={() => onDefaultEvnChange("development")}>Monitara-Dev</Menu.Item>
+        <Menu.Item onPress={() => onDefaultEvnChange("local")}>Monitara-Local</Menu.Item>
+      </Menu>
     )
   }
 
@@ -168,10 +188,6 @@ export const LoginScreen = observer(function LoginScreen() {
     return <Copyright />
   }
 
-  const environmentActionSheet = () => {
-    return <Environments actionSheetRef={actionSheetRef} />
-  }
-
   return (
     <Screen style={ROOT} preset="fixed">
       <Box justifyContent={"center"} alignItems={"center"} marginTop={"10%"}>
@@ -180,7 +196,6 @@ export const LoginScreen = observer(function LoginScreen() {
         {renderLoginControls()}
       </Box>
       <Box flex={1}>{renderCopyRightLabel()}</Box>
-      {environmentActionSheet()}
     </Screen>
   )
 })
