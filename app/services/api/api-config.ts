@@ -1,6 +1,6 @@
 // Use this import if you want to use "env.js" file
 const { API_URL, TIME_OUT } = require("../../config/env")()
-console.log("API", API_URL)
+
 
 /**
  * The options used to configure the API.
