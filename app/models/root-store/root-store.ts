@@ -1,6 +1,7 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { AppthemeModel } from "../apptheme/apptheme"
 import { AuthenticationModel } from "../authentication/authentication"
+import { NetInfoModel } from "../net-info/net-info"
 import { NotificationModel } from "../notification/notification"
 
 /**
@@ -10,7 +11,8 @@ import { NotificationModel } from "../notification/notification"
 export const RootStoreModel = types.model("RootStore").props({
   authenticationStore:types.optional(AuthenticationModel,{}),
   notificationStore:types.optional(NotificationModel,{}),
-  appThemeStore:types.optional(AppthemeModel,{})
+  appThemeStore:types.optional(AppthemeModel,{}),
+  netInfoStore:types.optional(NetInfoModel,{}),
 })
 
 /**
