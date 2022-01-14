@@ -64,7 +64,7 @@ export const LoginScreen = observer(function LoginScreen() {
       <Input
         ref={emailInputRef}
         editable={!loading}
-        defaultValue="q.hammouri@tahaluf.ae"
+        defaultValue="user1@mars.com"
         autoCapitalize="none"
         autoCompleteType="off"
         autoCorrect={false}
