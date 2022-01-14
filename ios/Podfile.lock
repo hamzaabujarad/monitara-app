@@ -12,13 +12,13 @@ PODS:
     - ExpoModulesCore
   - EXKeepAwake (10.0.1):
     - ExpoModulesCore
-  - EXLinearGradient (10.0.3):
+  - Expo (43.0.5):
     - ExpoModulesCore
-  - EXLocalization (11.0.0):
+  - ExpoLinearGradient (11.0.0):
     - ExpoModulesCore
-  - Expo (43.0.4):
+  - ExpoLocalization (12.0.0):
     - ExpoModulesCore
-  - ExpoModulesCore (0.4.9):
+  - ExpoModulesCore (0.4.10):
     - React-Core
   - FBLazyVector (0.66.4)
   - FBReactNativeSpec (0.66.4):
@@ -468,10 +468,10 @@ PODS:
     - Firebase/Messaging (= 8.10.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.1.0):
+  - RNGestureHandler (2.1.1):
     - React-Core
-  - RNKeychain (6.2.0):
-    - React
+  - RNKeychain (8.0.0):
+    - React-Core
   - RNNotifee (4.0.1):
     - React-Core
     - RNNotifee/NotifeeCore (= 4.0.1)
@@ -530,9 +530,9 @@ DEPENDENCIES:
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
-  - EXLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
-  - EXLocalization (from `../node_modules/expo-localization/ios`)
   - Expo (from `../node_modules/expo/ios`)
+  - ExpoLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
+  - ExpoLocalization (from `../node_modules/expo-localization/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -654,12 +654,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-font/ios"
   EXKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
-  EXLinearGradient:
-    :path: "../node_modules/expo-linear-gradient/ios"
-  EXLocalization:
-    :path: "../node_modules/expo-localization/ios"
   Expo:
     :path: "../node_modules/expo/ios"
+  ExpoLinearGradient:
+    :path: "../node_modules/expo-linear-gradient/ios"
+  ExpoLocalization:
+    :path: "../node_modules/expo-localization/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
   FBLazyVector:
@@ -766,10 +766,10 @@ SPEC CHECKSUMS:
   EXFileSystem: 99aac7962c11c680681819dd9cbca24e20e5b1e7
   EXFont: 1fb13af43dc517c01c0ff21a6e32f9f9bf2ea602
   EXKeepAwake: b571c2ad8323b2fced6e907766e2549f75119471
-  EXLinearGradient: 4d727eacb53d19ef25b02dd810e0199b453489ce
-  EXLocalization: bb38414618b30a177482c9a6f5594ec6eb0898c1
-  Expo: 363a3f3c60d5a1d4f8badb29a869005487f2d9e4
-  ExpoModulesCore: e41ed0b72daeac74731816ad7997d639f0115a9d
+  Expo: d9588796cd19999da4d440d87bf7eb7ae4dbd608
+  ExpoLinearGradient: a7f1672e1727fedc4280d56c27606f8e195b9fcc
+  ExpoLocalization: 83582a967db52987a8479490b056d5eb9fd70552
+  ExpoModulesCore: c9438f6add0fb7b04b7c64eb97a833d2752a7834
   FBLazyVector: e5569e42a1c79ca00521846c223173a57aca1fe1
   FBReactNativeSpec: fe08c1cd7e2e205718d77ad14b34957cce949b58
   Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
@@ -834,8 +834,8 @@ SPEC CHECKSUMS:
   RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
   RNFBApp: 78d0446e8b28dc30616c134a9e4d8d4b01f9f966
   RNFBMessaging: 79910a2eb2fa5955f38259367b14431bd78bef19
-  RNGestureHandler: e5c7cab5f214503dcefd6b2b0cefb050e1f51c4a
-  RNKeychain: b8e0711b959a19c5b057d1e970d3c83d159b6da5
+  RNGestureHandler: e1ad51d31a580755079d5124d3ab66f0fcaa8311
+  RNKeychain: 4f63aada75ebafd26f4bc2c670199461eab85d94
   RNNotifee: ed6c0b5ffc0b021507fe196a1c4cfd1fe002410c
   RNReanimated: da3860204e5660c0dd66739936732197d359d753
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e

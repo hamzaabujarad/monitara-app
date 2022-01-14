@@ -30,7 +30,7 @@ export const LoginScreen = observer(function LoginScreen() {
   const { authenticationStore } = useStores()
 
   const [securePasswordText, setSecurePasswordText] = React.useState(true)
-  const [email, setEmail] = React.useState("q.hammouri@tahaluf.ae")
+  const [email, setEmail] = React.useState("user1@mars.com")
   const [password, setPassword] = React.useState("M0n!t@r@P@$$w0r6")
   const [loading, setLoading] = React.useState(false)
 
@@ -64,7 +64,7 @@ export const LoginScreen = observer(function LoginScreen() {
       <Input
         ref={emailInputRef}
         editable={!loading}
-        defaultValue="q.hammouri@tahaluf.ae"
+        defaultValue="user1@mars.com"
         autoCapitalize="none"
         autoCompleteType="off"
         autoCorrect={false}
@@ -109,7 +109,7 @@ export const LoginScreen = observer(function LoginScreen() {
         onChangeText={(v) => setPassword(v)}
         bgColor={color.palette.white}
         placeholder={`${translate("loginScreen.passwordPlaceHolder")}`}
-        InputRightElement={renderSecureTextButton()}
+        // InputRightElement={renderSecureTextButton()}
       />
     )
   }
