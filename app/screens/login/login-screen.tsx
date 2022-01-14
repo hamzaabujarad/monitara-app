@@ -30,7 +30,7 @@ export const LoginScreen = observer(function LoginScreen() {
   const { authenticationStore } = useStores()
 
   const [securePasswordText, setSecurePasswordText] = React.useState(true)
-  const [email, setEmail] = React.useState("q.hammouri@tahaluf.ae")
+  const [email, setEmail] = React.useState("user1@mars.com")
   const [password, setPassword] = React.useState("M0n!t@r@P@$$w0r6")
   const [loading, setLoading] = React.useState(false)
 
