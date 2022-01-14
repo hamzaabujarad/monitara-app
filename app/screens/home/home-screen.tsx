@@ -38,7 +38,7 @@ export const HomeScreen = observer(function HomeScreen() {
         width: width,
         height: height,
       }}
-      source={{ uri: "https://dev.monitara.com/TenantManagement/ProofOfConcept/Dashboard" }}
+      source={{ uri: "https://dev.monitara.com/TenantManagement" }}
       injectedJavaScript={INJECTED_JAVASCRIPT}
       onMessage={onMessage}
     />
