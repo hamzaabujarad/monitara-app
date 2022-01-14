@@ -4,6 +4,7 @@ import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
 import { load } from "../../utils/storage"
 import { User } from "../../models"
+import { decodeAccessTokenAndSaveUserData, restartApplication } from "../../utils/general-utils"
 
 /**
  * Manages all requests to the API.
@@ -48,6 +49,27 @@ export class Api {
       const userData: User = await load("user-data")
       if (userData) {
         request.headers["Authorization"] = `Bearer ${userData.accessToken}`
+      }
+    })
+    this.apisauce.addAsyncResponseTransform(async (response) => {
+      if (response.status == 401) {
+        try {
+          const userData: User = await load("user-data")
+          const newUserData: Types.GetLoginResult = await this.login(
+            userData.Email,
+            userData.password,
+          )
+          if (newUserData.kind == "ok") {
+            await decodeAccessTokenAndSaveUserData(
+              newUserData.login.accessToken,
+              userData.Email,
+              userData.password,
+            )
+            //if every things we resend request with new access token
+          }
+        } catch (error) {
+          restartApplication()
+        }
       }
     })
   }

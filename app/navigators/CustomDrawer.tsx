@@ -9,7 +9,8 @@ import { Alert } from "react-native"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../models"
 import { clear } from "../utils/storage"
-import RNRestart from "react-native-restart"
+import { restartApplication } from "../utils/general-utils"
+
 const logoStyle: ImageStyle = {
   width: 50,
   height: 50,
@@ -58,7 +59,7 @@ export const CustomDrawerContent = observer(function CustomDrawerContent(props: 
     try {
       //clear all local storage
       clear()
-      RNRestart.Restart()
+      restartApplication()
     } catch (error) {}
   }
 

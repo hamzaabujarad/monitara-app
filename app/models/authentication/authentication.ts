@@ -1,7 +1,7 @@
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
 import { withEnvironment, withRootStore } from ".."
-import jwt_decode from "jwt-decode"
-import { load, save } from "../../utils/storage"
+import { decodeAccessTokenAndSaveUserData } from "../../utils/general-utils"
+import { load } from "../../utils/storage"
 
 export interface User {
   Account: string
@@ -13,6 +13,7 @@ export interface User {
   aud: string
   exp: number
   iss: string
+  password: string
   accessToken: string
 }
 
@@ -40,11 +41,7 @@ export const AuthenticationModel = types
     login: flow(function* (identifier: string, secret: string) {
       const { login, kind } = yield self.environment.api.login(identifier, secret)
       if (kind === "ok" && !login.errorMessages.length) {
-        const decode: User = jwt_decode(login.accessToken)
-        decode["accessToken"] = login.accessToken
-        decode["password"] = secret
-        //save user data based on access token decoder data
-        yield save("user-data", decode)
+        yield decodeAccessTokenAndSaveUserData(login.accessToken, identifier, secret)
         yield self.rootStore.notificationStore.registerMobileInstances()
         self.updateIsSignedIn(true)
         self.updateAccessToken(login.accessToken)
